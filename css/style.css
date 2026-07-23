@@ -1,9 +1,8 @@
 :root{
   --felt: #122e26;
-  --gold: #e8b94a;
-  --muted: rgba(255, 255, 255, 0.7);
   --ink: #ffffff;
-  --line: rgba(255, 255, 255, 0.2);
+  --muted: rgba(255, 255, 255, 0.7);
+  --line: rgba(255, 255, 255, 0.15);
 }
 
 *{
@@ -28,7 +27,8 @@ body{
    1. LETRAS BLANCAS CON BORDE NEGRO
    ========================================== */
 body, h1, .sub, .card .name, .card .total, .btn, .round-chip, 
-.help-card h2, .confirm-title, #setup input, .addrow input, .phase-row span {
+.help-card h2, .confirm-title, #setup input, .addrow input, .phase-row span,
+.rules-list li b, .round-info-box b, .pirate-card {
   color: #ffffff !important;
   text-shadow: 
     -1px -1px 0 #000,  
@@ -47,7 +47,7 @@ a{
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: var(--gold);
+  color: #ffffff;
   font-weight: 700;
   font-size: 0.9rem;
   margin-bottom: 10px;
@@ -71,8 +71,30 @@ h1{
 }
 
 /* ==========================================
-   2. FORMULARIOS TRANSPARENTES (GRABADOS EN MADERA)
+   2. ESTILO GRABADO EN MADERA (CONTENEDORES, CARDS Y BOTONES)
    ========================================== */
+/* Regla general para dar el efecto grabado/tallado a todo */
+#setup input, 
+.card, 
+.addrow input, 
+.phase-row, 
+.history span,
+.btn, 
+.phases-panel, 
+.help-card, 
+.confirm-card, 
+.chip, 
+.round-info-box, 
+.round-chip,
+.pirate-card {
+  background: rgba(0, 0, 0, 0.32) !important; /* Fondo transparente ahumado */
+  border: 1px solid rgba(0, 0, 0, 0.6) !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.18) !important; /* Bisel grabado */
+  border-radius: 10px;
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.75) !important; /* Relieve interior hundido */
+}
+
+/* Formulario principal de nombres */
 #setup{
   display: flex;
   flex-direction: column;
@@ -82,14 +104,9 @@ h1{
 }
 
 #setup input{
-  background: rgba(0, 0, 0, 0.35) !important; /* Fondo transparente oscuro */
-  border: 1px solid rgba(0, 0, 0, 0.6) !important;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2) !important; /* Bisel grabado */
-  border-radius: 10px;
   padding: 12px 14px;
   font-size: 1rem;
   font-weight: 700;
-  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.8) !important; /* Efefto relieve grabado */
 }
 
 #setup input::placeholder{
@@ -98,7 +115,7 @@ h1{
 }
 
 /* ==========================================
-   3. FICHAS Y PANELES TRANSLÚCIDOS
+   3. FICHAS DE JUGADORES Y PUNTUACIÓN (LIMPIO SIN FRANSAS)
    ========================================== */
 #players{
   display: grid;
@@ -108,19 +125,12 @@ h1{
   margin: 0 auto;
 }
 
-/* Tarjetas de jugadores (fichas translúcidas) */
-.card, .phases-panel, .help-card, .confirm-card, .chip {
-  background: rgba(0, 0, 0, 0.25) !important; /* Translúcido casi transparente */
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-radius: 14px;
-  padding: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4) !important;
-}
-
 .card{
-  border-top: 6px solid var(--c-accent) !important; /* Mantiene la barra de color de jugador */
+  padding: 14px;
+  border-top: 1px solid rgba(0, 0, 0, 0.6) !important; /* Eliminada la franja superior de color */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .card .name{
@@ -138,13 +148,6 @@ h1{
 .card .phase-label{
   color: var(--muted);
   font-size: 0.72rem;
-}
-
-/* Filas e inputs de puntuación translúcidos dentro de la ficha */
-.phase-row, .addrow input, .history span {
-  background: rgba(0, 0, 0, 0.3) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 8px;
 }
 
 .phase-row{
@@ -180,7 +183,6 @@ h1{
   font-size: 1rem;
   text-align: center;
   font-weight: 700;
-  box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.6) !important;
 }
 
 .history{
@@ -196,21 +198,23 @@ h1{
   border-radius: 6px;
 }
 
-/* Botones */
+/* ==========================================
+   4. BOTONES GRABADOS (SIN DORADOS)
+   ========================================== */
 .btn{
-  border: none;
-  border-radius: 10px;
   padding: 13px 16px;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
-  background: rgba(232, 185, 74, 0.85) !important;
-  border: 1px solid var(--gold) !important;
+}
+
+.btn:active{
+  transform: scale(0.98);
+  box-shadow: inset 3px 3px 8px rgba(0, 0, 0, 0.9) !important;
 }
 
 .btn.secondary{
-  background: rgba(0, 0, 0, 0.35) !important;
-  border: 1px solid var(--line) !important;
+  background: rgba(0, 0, 0, 0.25) !important;
 }
 
 .btn.small{
@@ -221,6 +225,7 @@ h1{
 .btn.ghost{
   background: transparent !important;
   border: none !important;
+  box-shadow: none !important;
   color: var(--muted);
   padding: 6px 8px;
   font-size: 0.85rem;
@@ -238,9 +243,9 @@ h1{
 #winnerBanner{
   max-width: 980px;
   margin: 0 auto 14px;
-  background: rgba(42, 157, 143, 0.85) !important;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.45) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: inset 2px 2px 8px rgba(0,0,0,0.8) !important;
   padding: 12px 16px;
   border-radius: 12px;
   font-weight: 800;
@@ -249,7 +254,6 @@ h1{
 }
 
 #winnerBanner.win-banner{
-  background: rgba(232, 185, 74, 0.9) !important;
   padding: 28px 16px;
   animation: pop-in .35s ease;
 }
@@ -286,8 +290,6 @@ h1{
   gap: 8px;
 }
 
-.rules-list li b{ color: var(--gold); }
-
 .rules-note{
   color: var(--muted);
   font-size: 0.82rem;
@@ -302,11 +304,12 @@ h1{
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 1px solid var(--gold);
-  background: rgba(232, 185, 74, 0.9) !important;
   font-size: 1.3rem;
   font-weight: 800;
   cursor: pointer;
+  background: rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: inset 2px 2px 5px rgba(0,0,0,0.8) !important;
 }
 
 .help-overlay, .confirm-overlay{
@@ -338,30 +341,29 @@ h1{
   border: none;
   font-size: 1.4rem;
   cursor: pointer;
+  color: #fff;
 }
 
 .round-info-box{
   max-width: 980px;
   margin: 0 auto 14px;
-  background: rgba(0, 0, 0, 0.3) !important;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--gold) !important;
-  border-radius: 12px;
   padding: 12px 16px;
   text-align: center;
 }
 
-.round-info-box b{ color: var(--gold); }
+.round-chip.active{
+  background: rgba(0, 0, 0, 0.6) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
 
 .turn-dot{
   display: inline-block;
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--gold);
+  background: #ffffff;
   margin-right: 6px;
-  box-shadow: 0 0 8px var(--gold);
+  box-shadow: 0 0 6px #ffffff;
 }
 
 .hidden{ display: none !important; }
