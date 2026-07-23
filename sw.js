@@ -1,4 +1,4 @@
-const CACHE_NAME = 'continental-app-v3';
+const CACHE_NAME = 'continental-app-v4';
 const ASSETS = [
   './index.html',
   './manifest.json',
